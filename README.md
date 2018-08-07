@@ -1,5 +1,4 @@
-@@ -1 +1,210 @@
-# jeeweb-mybatis-master
+# jeeweb-mybatis-master-plus
 JeeWeb敏捷开发平台(Mybatis)
 ===============
 * 	QQ交流群： 570062301
