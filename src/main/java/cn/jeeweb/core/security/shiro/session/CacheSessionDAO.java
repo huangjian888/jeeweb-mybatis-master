@@ -148,7 +148,7 @@ public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements Sessio
 	@Override
 	public Collection<Session> getActiveSessions(boolean includeLeave, Object principal, Session filterSession) {
 		// 如果包括离线，并无登录者条件。
-		System.out.println("CacheSessionDAO getActiveSessions...");
+		System.out.println("------CacheSessionDAO getActiveSessions...");
 		if (includeLeave && principal == null) {
 			return getActiveSessions();
 		}

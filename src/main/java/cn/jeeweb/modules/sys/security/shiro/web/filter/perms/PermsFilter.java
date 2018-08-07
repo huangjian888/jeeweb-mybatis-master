@@ -62,7 +62,7 @@ public class PermsFilter extends PermissionsAuthorizationFilter {
         if(!TextUtils.isEmpty(httpServletRequest.getParameter("callbackType"))
                 && httpServletRequest.getParameter("callbackType").equalsIgnoreCase("json")){
             AjaxJson ajaxJson = new AjaxJson();
-            ajaxJson.fail("没有相应的操作权限！请联系管理员");
+            ajaxJson.fail("没有相应的操作权限！请联系管理员分配权限...");
             HttpServletResponse httpServletResponse = (HttpServletResponse) response;
             httpServletResponse.setCharacterEncoding("UTF-8");
             httpServletResponse.setHeader("Content-type", "application/json;charset=UTF-8");
