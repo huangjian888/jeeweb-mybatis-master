@@ -49,7 +49,7 @@ public class UserUtils {
 	public static final String MENU_CACHE_URL_ = "menu_url_";
 	public static final String CACHE_ROLE_LIST = "roleList";
 	public static final String CACHE_MENU_LIST = "menuList";
-	public static final String CACHE_MENU_PERMISSION = "";
+	public static final String CACHE_MENU_LIST_ALL = "menuListAll";
 
 	/**
 	 * 根据ID获取用户
@@ -168,6 +168,16 @@ public class UserUtils {
 		return menuList;
 	}
 
+	public static List<Menu> getMenuListAll() {
+		List<Menu> menuList = (List<Menu>) getCache(CACHE_MENU_LIST_ALL);
+		if (menuList == null) {
+			menuList = new ArrayList<Menu>();
+			menuList = menuService.findMenuByUserId(getUser().getId());
+			putCache(CACHE_MENU_LIST_ALL, menuList);
+		}
+		return menuList;
+	}
+
 	/**
 	 * 获取当前菜单
 	 * 
@@ -225,7 +235,7 @@ public class UserUtils {
 	public static Set<String> getPermissionsList(String permissionsFlag) {
 		List<Menu> list = new ArrayList<Menu>();
 		if(permissionsFlag.equalsIgnoreCase("all")){
-			list = menuService.findMenuByUserId(getUser().getId());
+			list = getMenuListAll();
 		}else{
 			list = UserUtils.getMenuList();
 		}

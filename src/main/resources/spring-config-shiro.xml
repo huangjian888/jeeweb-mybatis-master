@@ -122,7 +122,7 @@
         <property name="rememberMeParam" value="rememberMe"/>
     </bean>
 
-    <bean id="permsFilter" class="cn.jeeweb.modules.sys.security.shiro.web.filter.perms.PermsFilter"/>
+    <!--<bean id="permsFilter" class="cn.jeeweb.modules.sys.security.shiro.web.filter.perms.PermsFilter"/>-->
 
     <!-- 退出登录过滤器 -->
     <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
@@ -162,7 +162,7 @@
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
-                <entry key="perms" value-ref="permsFilter"/>
+                <!--<entry key="perms" value-ref="permsFilter"/>-->
                 <entry key="logout" value-ref="logoutFilter"/>
                 <entry key="sysUser" value-ref="sysUserFilter"/>
                 <entry key="onlineSession" value-ref="onlineSessionFilter"/>

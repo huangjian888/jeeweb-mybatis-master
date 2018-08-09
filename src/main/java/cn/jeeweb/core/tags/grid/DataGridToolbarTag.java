@@ -154,6 +154,7 @@ public class DataGridToolbarTag extends AbstractGridHtmlTag {
 	private void dealDefault(DataGridTag parent) {
 		if (!StringUtils.isEmpty(this.function) && isFunction(this.function)) {
 			baseUrl = parent.getBaseUrl();
+			staticAttributes.put("baseUrl", baseUrl);
 			// 预处理Url问题
 			if (StringUtils.isEmpty(url)) {
 				String url = "";

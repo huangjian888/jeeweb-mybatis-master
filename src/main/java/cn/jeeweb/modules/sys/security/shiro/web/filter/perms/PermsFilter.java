@@ -1,11 +1,17 @@
 package cn.jeeweb.modules.sys.security.shiro.web.filter.perms;
 
 import cn.jeeweb.core.model.AjaxJson;
+import cn.jeeweb.core.security.shiro.authz.annotation.RequiresMethodPermissions;
+import cn.jeeweb.core.security.shiro.authz.annotation.RequiresPathPermission;
 import cn.jeeweb.core.utils.PropertiesUtil;
 import cn.jeeweb.modules.sys.utils.UserUtils;
 import com.alibaba.fastjson.JSON;
 import org.apache.http.util.TextUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.method.HandlerMethod;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +25,6 @@ import java.util.Set;
  */
 
 public class PermsFilter extends PermissionsAuthorizationFilter {
-
     private boolean isAjax(ServletRequest request){
         return "XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"));
     }
@@ -27,9 +32,9 @@ public class PermsFilter extends PermissionsAuthorizationFilter {
     @Override
     public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        System.out.println("httpServletRequest.getRequestURI():"+httpServletRequest.getRequestURI());
         if(!TextUtils.isEmpty(httpServletRequest.getParameter("callbackType"))
                 && httpServletRequest.getParameter("callbackType").equalsIgnoreCase("json")){
+
             String baseUrl = httpServletRequest.getParameter("baseUrl");
             String actionType = httpServletRequest.getParameter("actionType");
             String permsUrl = baseUrl + "/" + actionType;
